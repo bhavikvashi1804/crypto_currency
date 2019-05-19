@@ -37,20 +37,24 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _CryptoWidget()
   {
     return Container(
+        child:Column(
+          children: <Widget>[
+            Flexible(
+              child: ListView.builder(
+                itemCount: widget.Currencies.length,
+                itemBuilder: (BuildContext context,int index)
+                {
+                  final Map currency =widget.Currencies[index];
+                  //here we use widget.currencies because Currencies is object of upper class
+                  final MaterialColor color=_colors[index% _colors.length];
 
-        child: ListView.builder(
-          itemCount: widget.Currencies.length,
-          itemBuilder: (BuildContext context,int index)
-          {
-              final Map currency =widget.Currencies[index];
-              //here we use widget.currencies because Currencies is object of upper class
-              final MaterialColor color=_colors[index% _colors.length];
+                  return getItemListUi(currency,color);
 
-              return getItemListUi(currency,color);
-
-          },
-        ),
-
+                },
+              ),
+            )
+          ],
+        )
     );
   }
 
@@ -72,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _getSubtitleText(String price,String perChange)
   {
-    TextSpan priceTextWidget =new TextSpan(text: "\$$price",style: TextStyle(color:Colors.black));
+    TextSpan priceTextWidget =new TextSpan(text: "\$$price\n",style: TextStyle(color:Colors.black));
     TextSpan perChangeWidget;
     String perChangeText="1 hour: $perChange%";
     if(double.parse(perChange)>0)
