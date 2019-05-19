@@ -1,11 +1,6 @@
-import 'dart:convert';
-
 import 'package:cryptocurrency_app/data/cyrpto_data.dart';
 import 'package:cryptocurrency_app/modules/crypto_present.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:http/http.dart' as http;
-
 
 class MyHomePage extends StatefulWidget
 {
@@ -32,6 +27,19 @@ class _MyHomePageState extends State<MyHomePage> implements CryptoListViewContra
     _presenter.loadCurrencies();
     super.initState();
   }
+
+
+  @override
+  void onLoadCryptoComplete(List<Crypto> items) {
+    setState(() {
+      _currencies= items;
+      _isLoading=false;
+    });
+  }
+  @override
+  void onLoadCryptoError() {}
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -104,19 +112,6 @@ class _MyHomePageState extends State<MyHomePage> implements CryptoListViewContra
         children: [priceTextWidget,perChangeWidget]
       ),
     );
-
-  }
-
-  @override
-  void onLoadCryptoComplete(List<Crypto> items) {
-    setState(() {
-      _currencies= items;
-      _isLoading=false;
-    });
-  }
-
-  @override
-  void onLoadCryptoError() {
 
   }
 }

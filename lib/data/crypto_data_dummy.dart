@@ -5,7 +5,6 @@ class MockCryptoRepo implements CryptoRepo
 {
   @override
   Future<List<Crypto>> fetchCurrencies() {
-    // TODO: implement fetchCurrencies
     return Future.value(currencies);
   }
 }

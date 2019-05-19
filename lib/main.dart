@@ -6,10 +6,7 @@ import 'package:http/http.dart' as http;
 import 'dependency_injection.dart';
 
 void main() async{
-
   Injector.configure(Flavor.Produced);
-
-
   runApp(MyApp());
 }
 
